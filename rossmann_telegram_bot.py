@@ -5,7 +5,7 @@ import requests
 from flask import Flask,request,Response
 
 # contants
-TOKEN="6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4"
+token="6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4"
 # # info about Bot
 # https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/getMe
 
@@ -22,9 +22,7 @@ TOKEN="6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4"
 # https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/sendMessage?chat_id=1226335433&text=Hi Douglas, I am doing good, tks!
 
 def send_message(chat_id, text):
-    #url =f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}"
-    url = 'https://api.telegram.org/bot{}/'.format( TOKEN )
-	url = url + 'sendMessage?chat_id={}'.format( chat_id )
+    url =f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}"    
     r = requests.post(url,json={"text":text} )
     print("Status Code {}".format(r.status_code))
     return None 
