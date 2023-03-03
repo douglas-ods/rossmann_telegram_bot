@@ -5,21 +5,26 @@ import requests
 from flask import Flask,request,Response
 
 # contants
-token="6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4"
+TOKEN="6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4"
 # # info about Bot
 # https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/getMe
 
 # # get updates
 # https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/getUpdates
 
-# # setWebhook
+# # Webhook Local
 #https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/setWebhook?url=https://localhost.run/docs/forever-free/
+
+# # Webhook Render
+# https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/setWebhook?url=https://rossmann-telegram-bot-6yoe.onrender.com
 
 # # send message
 # https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/sendMessage?chat_id=1226335433&text=Hi Douglas, I am doing good, tks!
 
 def send_message(chat_id, text):
-    url =f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}"
+    #url =f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}"
+    url = 'https://api.telegram.org/bot{}/'.format( TOKEN )
+	url = url + 'sendMessage?chat_id={}'.format( chat_id )
     r = requests.post(url,json={"text":text} )
     print("Status Code {}".format(r.status_code))
     return None 
@@ -47,17 +52,18 @@ def predict(data):
     url = 'https://rossmann-api-jynw.onrender.com/rossmann/predict'
     header = {'Content-type':'application/json'} 
     data = data
+    #enviar dados
     r = requests.post(url,data=data,headers=header )
-    print( 'Status Code {}'.format(r.status_code))
-    df = pd.DataFrame(r.json(),columns=r.json()[0].keys())
-    df1 = df[["store","prediction"]].groupby("store").sum().reset_index()  
-    return df1
+    print( 'Status Code {}'.format(r.status_code))    
+    #converter novamente para um DF a partir do json retornado
+	df1 = pd.DataFrame( r.json(), columns=r.json()[0].keys())
+	return df1
 
 
 def parse_message(message):
     chat_id = message["result"]["chat"]["id"]
     store_id = message["result"]["text"]
-    store_id = store_id.replace("/"," ")
+    store_id = store_id.replace("/","")
     try:
        store_id = int(store_id) 
     except ValueError:        
