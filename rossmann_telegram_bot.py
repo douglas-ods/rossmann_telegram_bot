@@ -54,8 +54,8 @@ def predict(data):
     r = requests.post(url,data=data,headers=header )
     print( 'Status Code {}'.format(r.status_code))    
     #converter novamente para um DF a partir do json retornado
-	df1 = pd.DataFrame( r.json(), columns=r.json()[0].keys())
-	return df1
+    df1 = pd.DataFrame(r.json(),columns=r.json()[0].keys())
+    return df1
 
 
 def parse_message(message):
