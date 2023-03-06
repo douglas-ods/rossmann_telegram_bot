@@ -29,7 +29,7 @@ def send_message(chat_id, text):
 
 def load_dataset(store_id):
     df10 = pd.read_csv("test.csv") 
-    df_store_raw =("store.csv")
+    df_store_raw =pd.read_csv("store.csv")
     df_test =pd.merge(df10,df_store_raw,how="left",on="Store")
     # choose store for prediction
     df_test = df_test[df_test["Store"]==store_id]
@@ -45,8 +45,7 @@ def load_dataset(store_id):
     return data
 
 def predict(data):
-    # API Call
-    #url = 'http://192.168.0.107:5000/rossmann/predict'
+    # API Call    
     url = 'https://rossmann-api-jynw.onrender.com/rossmann/predict'
     header = {'Content-type':'application/json'} 
     data = data
