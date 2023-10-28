@@ -84,7 +84,7 @@ def index():
                 df1 = predict(data)
                 # calculation
                 df2 = df1[["store","prediction"]].groupby("store").sum().reset_index()  
-                msg= "Store number {} will sel R${:,.2f} in the next 6 weeks".format(df2["store"][0].values,df2["prediction"][0].values)
+                msg = 'Store Number {} will sell R${:,.2f} in the next 6 weeks'.format(df2['store'].values[0],df2['prediction'].values[0] )                 
                 # send message
                 send_message(chat_id,msg)
                 return Response("OK",status=200)                
