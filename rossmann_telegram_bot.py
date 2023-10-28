@@ -5,7 +5,7 @@ import requests
 from flask import Flask,request,Response
 
 # contants
-token="6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4"
+token="6821240818:AAGyOtpksA6JhwqIlTwaQcw4sU3djWVPpD0"
 # # info about Bot
 # https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/getMe
 
@@ -16,10 +16,10 @@ token="6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4"
 #https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/setWebhook?url=https://localhost.run/docs/forever-free/
 
 # # Webhook Render
-# https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/setWebhook?url=https://rossmann-telegram-bot-6yoe.onrender.com
+# https://api.telegram.org/bot6821240818:AAGyOtpksA6JhwqIlTwaQcw4sU3djWVPpD0/setWebhook?url=https://rossmann-telegram-bot-6yoe.onrender.com
 
 # # send message
-# https://api.telegram.org/bot6236253743:AAGjberiMXdpSJjKUWKwvvqlod8u2OU9pm4/sendMessage?chat_id=1226335433&text=Hi Douglas, I am doing good, tks!
+# https://api.telegram.org/bot6821240818:AAGyOtpksA6JhwqIlTwaQcw4sU3djWVPpD0/sendMessage?chat_id=1226335433&text=Hi Douglas, I am doing good, tks!
 
 def send_message(chat_id, text):
     url =f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}"    
