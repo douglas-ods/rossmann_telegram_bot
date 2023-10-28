@@ -45,8 +45,8 @@ def load_dataset(store_id):
     return data
 
 def predict(data):
-    # API Call    
-    url = 'https://rossmann-api-jynw.onrender.com/rossmann/predict'
+    # API Call        
+    url = 'https://api-rossmann-render-x8ik.onrender.com/rossmann/predict'
     header = {'Content-type':'application/json'} 
     data = data
     #enviar dados
@@ -58,8 +58,10 @@ def predict(data):
 
 
 def parse_message(message):
-    chat_id = message["result"]["chat"]["id"]
-    store_id = message["result"]["text"]
+    chat_id = message['message']['chat']['id']
+    store_id = message['message']['text']
+    #chat_id = message["result"]["chat"]["id"]
+    #store_id = message["result"]["text"]
     store_id = store_id.replace("/","")
     try:
        store_id = int(store_id) 
